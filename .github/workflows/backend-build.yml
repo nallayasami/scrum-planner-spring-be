@@ -19,7 +19,8 @@ jobs:
       - name: Download frontend release asset
         run: |
           mkdir -p src/main/resources/static
-          gh release download --repo nallayasami/scrum-planner-angular-fe --pattern "*" -D src/main/resources/static
+          gh release download --repo nallayasami/scrum-planner-angular-fe --pattern "*" -D src/main/resources/static 
+          rm src/main/resources/static/*.{zip,tar.gz}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
