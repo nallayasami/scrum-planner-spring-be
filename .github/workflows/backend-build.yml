@@ -24,7 +24,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: mvn clean package -DskipTests
-      - run: docker-compose build
+      - run: docker compose up -d --build
         env:
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
