@@ -10,3 +10,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+management:
+  endpoints:
+    web:
+      base-path: /status
+      exposure:
+        include: health, info
