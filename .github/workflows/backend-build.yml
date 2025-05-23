@@ -1,9 +1,10 @@
 name: Build & Dockerize Backend
 
 on:
-  workflow_run:
-    workflows: ["Build Angular Frontend"]
-    types: [completed]
+  repository_dispatch:
+    types: [frontend-build-released]
+  push:
+    branches: [ main ]
 
 jobs:
   build:
