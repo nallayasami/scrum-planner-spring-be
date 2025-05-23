@@ -16,14 +16,12 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Download frontend build
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-build
-          path: src/main/resources/static
+      - name: Download frontend release asset
+        run: |
+          mkdir -p src/main/resources/static
+          gh release download --repo nallayasami/scrum-planner-angular-fe --pattern "*.js" -D src/main/resources/static
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Spring Boot App
-        run: mvn clean package -DskipTests
-
-      - name: Dockerize Backend
-        run: docker build -t scrum-planner:latest .
+      - run: mvn clean package -DskipTests
+      - run: docker build -t scrum-planner:latest .
