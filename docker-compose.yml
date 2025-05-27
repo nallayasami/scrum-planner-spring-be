@@ -1,0 +1,20 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: scrumplanner
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+  app:
+    image: nallai/scrum-planner-backend:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/scrumplanner
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - postgres

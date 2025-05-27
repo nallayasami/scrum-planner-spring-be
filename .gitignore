@@ -1,0 +1,12 @@
+/target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# IntelliJ IDEA Plugins
+out/
+
+src/main/resources/static/
+
+src/main/resources/application-local.yml
